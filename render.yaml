@@ -1,1 +1,10 @@
-
+services:
+  - type: web
+    name: arduino-server
+    env: node
+    buildCommand: |
+      curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+      ./bin/arduino-cli core update-index
+      ./bin/arduino-cli core install arduino:avr
+      npm install
+    startCommand: node index.js
